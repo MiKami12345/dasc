@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>色覚検査</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
     <h1>色覚検査</h1>
     
     {% if question %}
@@ -21,5 +19,5 @@
         <p>問題を開始するには以下のボタンをクリックしてください。</p>
         <a href="{{ url_for('index') }}">問題を開始する</a>
     {% endif %}
-</body>
-</html>
+    
+{% endblock %}

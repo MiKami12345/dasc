@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>運転免許試験</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% endblock %}
+
+{% block content %}
     <div class="container mt-5">
         <h1>運転免許試験</h1>
         <form id="drivingExamForm">
@@ -29,6 +27,5 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="{{ url_for('static', filename='driving_exam.js') }}"></script>
-</body>
-</html>
+    <script src="../../static/js/questions/driving_exam.js"></script>    
+{% endblock %}
