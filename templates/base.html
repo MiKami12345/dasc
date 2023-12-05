@@ -10,7 +10,7 @@
 
         {% endblock %}
     </head>
-    <body>
+    <body class="body-content">
     <header class="nav-color">
         <nav class="navbar navbar-light bg-light">
             <a class="navbar-brand">運転能力チェッカー</a>
@@ -28,72 +28,72 @@
     {% block content %}
 
     {% endblock %}
-    <div class="footer">
-        <div class="foot-container">
-            <div class="foot-nav-container">            
-                <div class="foot-bottun-container">
-                    <a class="foot-bottun" tabindex="0"  href="{{ url_for('home') }}">
-                        <svg class="foot-image" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="HomeIcon">
-                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
-                        </svg>
-                        <span class="foot-nav">
-                            <a class="foot-nav-font">トップ</a>
-                        </span>
-                        <span class="foot-area"></span>
-                    </a>
-                </div>
-                <div class="foot-bottun-container">
-                    <a class="foot-bottun" tabindex="0"  href="{{ url_for('index') }}">
-                        <svg class="foot-image" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ColorLensIcon">
-                            <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path>
-                        </svg>
-                        <span class="foot-nav">
-                            <a class="foot-nav-font">色覚検査</a>
-                        </span>
-                        <span class="foot-area"></span>
-                    </a>
-                </div>
-                <div class="foot-bottun-container">
-                    <a class="foot-bottun" tabindex="0"  href="{{ url_for('driving_exam') }}">
-                        <svg class="foot-image" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="SettingsAccessibilityIcon">
-                            <path d="M20.5 4c-2.61.7-5.67 1-8.5 1s-5.89-.3-8.5-1L3 6c1.86.5 4 .83 6 1v12h2v-6h2v6h2V7c2-.17 4.14-.5 6-1l-.5-2zM12 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM7 24h2v-2H7v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2z"></path>
-                        </svg>
-                        <span class="foot-nav">
-                            <a class="foot-nav-font">知識問題</a>
-                        </span>
-                        <span class="foot-area"></span>
-                    </a>
-                </div>
-                <div class="foot-bottun-container">
-                    <a class="foot-bottun" tabindex="0"  href="{{ url_for('imageAnalysis') }}">
-                        <svg class="foot-image" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="VideoCameraBackIcon">
-                            <path d="M18 10.48V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-4.48l4 3.98v-11l-4 3.98zM5 16l2.38-3.17L9 15l2.62-3.5L15 16H5z"></path>
-                        </svg>
-                        <span class="foot-nav">
-                            <a class="foot-nav-font">動画分析</a>
-                        </span>
-                        <span class="foot-area"></span>
-                    </a>
-                </div>
-                <div class="foot-bottun-container">
-                    <a  class="foot-bottun" tabindex="0"  href="{{ url_for('reflexesIndex') }}">
-                        <svg class="foot-image" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="SchoolIcon">
-                            <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z"></path>
-                        </svg>
-                        <span class="foot-nav">
-                            <a class="foot-nav-font">反射神経</a>
-                        </span>
-                        <span class="foot-area"></span>
-                    </a>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    </body>
+    <footer>
+        <div class="footer">
+            <div class="foot-container">
+                <div class="foot-nav-container">            
+                    <div class="foot-bottun-container">
+                        <a class="foot-bottun" tabindex="0"  href="{{ url_for('home') }}">
+                            <svg class="foot-image" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="HomeIcon">
+                                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+                            </svg>
+                            <span class="foot-nav">
+                                <a class="foot-nav-font">トップ</a>
+                            </span>
+                            <span class="foot-area"></span>
+                        </a>
+                    </div>
+                    <div class="foot-bottun-container">
+                        <a class="foot-bottun" tabindex="0"  href="{{ url_for('index') }}">
+                            <svg class="foot-image" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ColorLensIcon">
+                                <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path>
+                            </svg>
+                            <span class="foot-nav">
+                                <a class="foot-nav-font">色覚検査</a>
+                            </span>
+                            <span class="foot-area"></span>
+                        </a>
+                    </div>
+                    <div class="foot-bottun-container">
+                        <a class="foot-bottun" tabindex="0"  href="{{ url_for('driving_exam') }}">
+                            <svg class="foot-image" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="SettingsAccessibilityIcon">
+                                <path d="M20.5 4c-2.61.7-5.67 1-8.5 1s-5.89-.3-8.5-1L3 6c1.86.5 4 .83 6 1v12h2v-6h2v6h2V7c2-.17 4.14-.5 6-1l-.5-2zM12 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM7 24h2v-2H7v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2z"></path>
+                            </svg>
+                            <span class="foot-nav">
+                                <a class="foot-nav-font">知識問題</a>
+                            </span>
+                            <span class="foot-area"></span>
+                        </a>
+                    </div>
+                    <div class="foot-bottun-container">
+                        <a class="foot-bottun" tabindex="0"  href="{{ url_for('imageAnalysis') }}">
+                            <svg class="foot-image" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="VideoCameraBackIcon">
+                                <path d="M18 10.48V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-4.48l4 3.98v-11l-4 3.98zM5 16l2.38-3.17L9 15l2.62-3.5L15 16H5z"></path>
+                            </svg>
+                            <span class="foot-nav">
+                                <a class="foot-nav-font">動画分析</a>
+                            </span>
+                            <span class="foot-area"></span>
+                        </a>
+                    </div>
+                    <div class="foot-bottun-container">
+                        <a  class="foot-bottun" tabindex="0"  href="{{ url_for('reflexesIndex') }}">
+                            <svg class="foot-image" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="SchoolIcon">
+                                <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z"></path>
+                            </svg>
+                            <span class="foot-nav">
+                                <a class="foot-nav-font">反射神経</a>
+                            </span>
+                            <span class="foot-area"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    </body>
-    <footer>
-        
     </footer>
 </html>
