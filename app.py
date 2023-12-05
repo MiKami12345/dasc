@@ -33,12 +33,9 @@ current_question_index = 0
 correct_answers_list = [0] * (num_tests_first_set + num_tests_second_set)
 
 # ホームページ
-@app.route('/color')
+@app.route('/')
 def home():
-    global current_question_index, correct_answers_list
-    current_question_index = 0
-    correct_answers_list = [0] * (num_tests_first_set + num_tests_second_set)
-    return render_template('color/home.html')
+    return render_template('home.html')
 
 # 問題を開始するページ
 @app.route('/color/index')
@@ -65,6 +62,7 @@ def check_answer():
         # 表示は赤、青、黄だが、内部的には紫、青、オレンジとして処理
         if user_answer == current_question['answer']:
             correct_answers_list[current_question_index] = 1
+            
 
         current_question_index += 1
 
