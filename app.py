@@ -102,7 +102,12 @@ def result():
 
 ## 動画分析
 @app.route('/image')
+def imageIndex():
+    render_template('image/index.html')
+
+@app.route('/image/analysis')
 def imageAnalysis():
+    # TODO
     analysisMain(1)
     return 200
 
