@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import csv
+from templates.image.video_analysis import analysisMain
 
 app = Flask(__name__)
 
@@ -83,6 +84,13 @@ def result():
     correct_answers = sum(correct_answers_list)
     # current_question_index = 0  # リセットしない
     return render_template('color/result.html', correct_answers=correct_answers, num_tests=(num_tests_first_set + num_tests_second_set))
+
+## 動画分析
+@app.route('/image')
+def imageAnalysis():
+    analysisMain(1)
+    return 200
+
 
 ## 知識問題
 

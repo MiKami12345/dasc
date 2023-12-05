@@ -1,4 +1,4 @@
-from mmdet.apis import DetInferencer
+# from mmdet.apis import DetInferencer
 import numpy as np
 import glob
 import cv2
@@ -36,77 +36,67 @@ def save_all_frames(video_path, dir_path, basename, ext='jpg'):
 
 
 
-#入力はドラレコ動画を画像にし保存したパス(str)
-#出力は物体検知の結果（人と信号機）
-def video_analysis(path = "./temp/video/result"):
-    #files = sorted(glob.glob("./temp/video/result/*"))
-    files = sorted(glob.glob(path+"/*"))
+# #入力はドラレコ動画を画像にし保存したパス(str)
+# #出力は物体検知の結果（人と信号機）
+# def video_analysis(path = "./temp/video/result"):
+#     #files = sorted(glob.glob("./temp/video/result/*"))
+#     files = sorted(glob.glob(path+"/*"))
     
-    #推論結果を保存するファイルの設定
-    folder_output_pic = "./temp/output_car_front"
-    folder_output_bbox = "./temp/output_car_bbox"
+#     #推論結果を保存するファイルの設定
+#     folder_output_pic = "./temp/output_car_front"
+#     folder_output_bbox = "./temp/output_car_bbox"
 
-    if not os.path.exists(folder_output_pic):
-        os.mkdir(folder_output_pic)
-    else:
-        shutil.rmtree(folder_output_pic)
-        os.mkdir(folder_output_pic)
-    if not os.path.exists(folder_output_bbox):
-        os.mkdir(folder_output_bbox)
+#     if not os.path.exists(folder_output_pic):
+#         os.mkdir(folder_output_pic)
+#     else:
+#         shutil.rmtree(folder_output_pic)
+#         os.mkdir(folder_output_pic)
+#     if not os.path.exists(folder_output_bbox):
+#         os.mkdir(folder_output_bbox)
 
-    #コンフィグの設定
-    model_name = 'rtmdet_tiny_8xb32-300e_coco'
-    #チェックポイントの選択
-    checkpoint = './checkpoints/rtmdet_tiny_8xb32-300e_coco_20220902_112414-78e30dcc.pth'
+#     #コンフィグの設定
+#     model_name = 'rtmdet_tiny_8xb32-300e_coco'
+#     #チェックポイントの選択
+#     checkpoint = './checkpoints/rtmdet_tiny_8xb32-300e_coco_20220902_112414-78e30dcc.pth'
 
-    #デバイスの設定（CPUかGPU）
-    device = 'cuda:0'
+#     #デバイスの設定（CPUかGPU）
+#     device = 'cuda:0'
 
-    # DetInferencer（推論機）の初期化
-    inferencer = DetInferencer(model_name, checkpoint, device)
+#     # DetInferencer（推論機）の初期化
+#     inferencer = DetInferencer(model_name, checkpoint, device)
     
-    person_all = []
-    tlight_all = []
+#     person_all = []
+#     tlight_all = []
     
-    #動画を読み込んだ後に何フレームあるかを入力する
-    for i,ele in enumerate(files):
-        #i = 3220
-        print(i)
-        # Use the detector to do inference
-        #img = './car_front/'+f'{i:06}'+'_img.jpg'
-        img = ele
-        result = inferencer(img, out_dir=folder_output_pic)
-        #print(result)
-        #print(result['predictions'][0]['labels'])
-        label_person = np.where(np.array(result['predictions'][0]['labels']) == 0)[0] #ラベル0は人
-        label_tlight = np.where(np.array(result['predictions'][0]['labels']) == 9)[0] #ラベル9は信号機
-        score30 = np.where(np.array(result['predictions'][0]['scores']) >= 0.30)[0]
-        #print(label_person)
-        #print(score_person)
+#     #動画を読み込んだ後に何フレームあるかを入力する
+#     for i,ele in enumerate(files):
+#         #i = 3220
+#         print(i)
+#         # Use the detector to do inference
+#         #img = './car_front/'+f'{i:06}'+'_img.jpg'
+#         img = ele
+#         result = inferencer(img, out_dir=folder_output_pic)
+#         #print(result)
+#         #print(result['predictions'][0]['labels'])
+#         label_person = np.where(np.array(result['predictions'][0]['labels']) == 0)[0] #ラベル0は人
+#         label_tlight = np.where(np.array(result['predictions'][0]['labels']) == 9)[0] #ラベル9は信号機
+#         score30 = np.where(np.array(result['predictions'][0]['scores']) >= 0.30)[0]
+#         #print(label_person)
+#         #print(score_person)
         
-        person_pred_label = list(set(label_person) & set(score30))
-        tlight_pred_label = list(set(label_tlight) & set(score30))
+#         person_pred_label = list(set(label_person) & set(score30))
+#         tlight_pred_label = list(set(label_tlight) & set(score30))
         
-        bboxes_person = [result['predictions'][0]['bboxes'][i] for i in person_pred_label]
-        bboxes_tlight = [result['predictions'][0]['bboxes'][i] for i in tlight_pred_label]
+#         bboxes_person = [result['predictions'][0]['bboxes'][i] for i in person_pred_label]
+#         bboxes_tlight = [result['predictions'][0]['bboxes'][i] for i in tlight_pred_label]
         
-        person_all.append(bboxes_person)
-        tlight_all.append(bboxes_tlight)
+#         person_all.append(bboxes_person)
+#         tlight_all.append(bboxes_tlight)
     
-    f = open(folder_output_bbox+"/bboxes_person.txt", 'wb')
-    pickle.dump(person_all, f)
-    f = open(folder_output_bbox+"/bboxes_tlight.txt", 'wb')
-    pickle.dump(tlight_all, f)
-    
-    
-    
-        
-        
-        
-        
-    pass
-
-
+#     f = open(folder_output_bbox+"/bboxes_person.txt", 'wb')
+#     pickle.dump(person_all, f)
+#     f = open(folder_output_bbox+"/bboxes_tlight.txt", 'wb')
+#     pickle.dump(tlight_all, f)
 
 #入力は画像、出力は赤が一定以上検出されたかどうか
 def red_detect(img):
@@ -338,20 +328,20 @@ def detection_tlight(path = "./temp/output_car_bbox/bboxes_tlight.txt",brake = [
 
 
 
-def main(input):
+def analysisMain(input):
     #save_all_frames(動画のパス, 画像の保存先, 保存画像のbasename)
     ###save_all_frames('./video_tlight.mp4', './temp/video/result', 'img')
     #video_analysis(ドラレコ動画を画像にし、保存したパス(str))
     ###video_analysis('./temp/video/result')
     #person_score = detection_person()
-    tlight_score = detection_tlight()
+    # tlight_score = detection_tlight()
     
     print("end")
     
     
 
 
-if __name__ == "__main__":
-    main("")
+# if __name__ == "__main__":
+#     main("")
 
 
