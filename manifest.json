@@ -1,0 +1,32 @@
+{
+    "theme_color": "#50ffb0",
+    "background_color": "#F4F4F4",
+    "display": "standalone",
+    "start_url": "/",
+    "name": "\u904b\u8ee2\u80fd\u529b\u30bb\u30eb\u30d5\u30c1\u30a7\u30c3\u30ab\u30fc",
+    "short_name": "\u904b\u8ee2\u80fd\u529b\u30bb\u30eb\u30d5\u30c1\u30a7\u30c3\u30ab\u30fc",
+    "description": "\u904b\u8ee2\u306b\u95a2\u3059\u308b\u80fd\u529b\u3092\u30bb\u30eb\u30d5\u30c1\u30a7\u30c3\u30af\u3067\u304d\u308b\u30a2\u30d7\u30ea\u30b1\u30fc\u30b7\u30e7\u30f3\u3067\u3059\u3002",
+    "icons": [
+      {
+        "src": "/static/icons/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/static/icons/icon-256x256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+      },
+      {
+        "src": "/static/icons/icon-384x384.png",
+        "sizes": "384x384",
+        "type": "image/png"
+      },
+      {
+        "src": "/static/icons/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  

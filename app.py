@@ -1,9 +1,27 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_file
 import csv
 from templates.image.video_analysis import analysisMain
 
 app = Flask(__name__)
 
+# ホームページ
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+@app.route('/mypage')
+def mypage():
+    return render_template('home.html')
+
+# PWAの実装
+# https://medium.com/@tristan_4694/how-to-create-a-progressive-web-app-pwa-using-flask-f227d5854c49
+# https://github.com/umluizlima/flask-pwa/tree/master
+@app.route('/manifest.json')
+def serve_manifest():
+    return send_file('manifest.json', mimetype='application/manifest+json')
+@app.route('/sw.js')
+def serve_sw():
+    return send_file('sw.js', mimetype='application/javascript')
 
 
 ## 色覚検査
@@ -33,14 +51,7 @@ current_question_index = 0
 # 正解数を格納するリスト
 correct_answers_list = [0] * (num_tests_first_set + num_tests_second_set)
 
-# ホームページ
-@app.route('/')
-def home():
-    return render_template('home.html')
 
-@app.route('/mypage')
-def mypage():
-    return render_template('home.html')
 
 # 問題を開始するページ
 @app.route('/color/index')
