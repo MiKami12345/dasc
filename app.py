@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, send_file
 import csv
 from templates.image.video_analysis import analysisMain
+import random
 
 app = Flask(__name__)
 
@@ -103,7 +104,7 @@ def result():
 ## 動画分析
 @app.route('/image')
 def imageIndex():
-    render_template('image/index.html')
+    return render_template('image/index.html')
 
 @app.route('/image/analysis')
 def imageAnalysis():
@@ -113,7 +114,7 @@ def imageAnalysis():
 
 
 ## 知識問題
-
+question_count = 5
 # Load questions from CSV file
 def load_questions():
     questions = []
@@ -122,31 +123,62 @@ def load_questions():
         # print(csv_reader)
         for row in csv_reader:
             # print(row)
-            # options = row['options'].split(',')
+            options = row['選択肢'].split('/')
             question = {
-                'question': row['\ufeff問題文'],
-                'options': ["〇","×"],
-                'correct_option': row['正解']
+                'id': row['\ufeffid'],
+                'question': row['問題文'],
+                'options': options,
+                'correct_option': row['正解'],
+                'explanation': row['解説']
             }
             questions.append(question)
     return questions
 
-questions = load_questions()
+all_questions = load_questions()
 
-@app.route('/questions')
+@app.route('/questions', methods=['GET', 'POST'])
+def questionsIndex():
+    if request.method == 'POST':
+        question_count = int(request.form.get('question_count', 5))
+        return redirect(url_for('driving_exam'))
+    return render_template('questions/index.html')
+
+
+@app.route('/questions/test', methods=['GET', 'POST'])
 def driving_exam():
-    return render_template('questions/driving_exam.html', questions=questions)
+    if request.method == 'POST':
+        return check_exam(request.form, all_questions, question_count)
+    else:
+        selected_questions = random.sample(all_questions, question_count)
+        return render_template('questions/driving_exam.html', questions=selected_questions, question_count=question_count)
 
-@app.route('/questions/check_exam', methods=['POST'])
-def check_exam():
+def check_exam(user_answers, questions, question_count):
     score = 0
+    result_details = [] 
     for i, question in enumerate(questions, 1):
-        user_answer = int(request.form[f'question{i}'])
-        if user_answer == question['correct_option']:
+        # G et correct option as string
+        correct_option_str = question['correct_option']
+        
+        # Get user's answer as string
+        user_answer_str = user_answers.get(f'question{i}')
+        
+        if user_answer_str == correct_option_str:
             score += 1
 
-    result_message = f'正解数: {score}/{len(questions)}'
-    return result_message
+        if user_answer_str is not None:
+            question_details = {
+                'question': question['question'],
+                'correct_answer': correct_option_str,
+                'user_answer': user_answer_str,
+                'explanation': question.get('explanation', 'No explanation available.')
+            }
+            result_details.append(question_details)
+
+    result_message = f'正解数: {score}/{question_count}'
+    print(result_message)
+    return render_template('questions/result.html', result_message=result_message, result_details=result_details)
+
+
 
 ## 反射神経
 
