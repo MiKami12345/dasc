@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Reaction Time and Visual Acuity Test</title>
+    <title>反射神経</title>
     <style>
         /* スタイルシートの設定 */
         #circle {
@@ -14,10 +14,24 @@
             cursor: pointer;
             transition: left 2s ease-in-out, top 2s ease-in-out; /* アニメーションの設定 */
         }
+        /* 戻るボタンのスタイル */
+        #backButton {
+            position: absolute;
+            top: 100px;
+            left: 10px;
+            padding: 8px 16px;
+            background-color: #ccc;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <h1>Click the Moving Circle When It Turns Yellow</h1>
+
+    <!-- <button id="backButton" onclick="{{ url_for('home') }}">戻る</button> -->
+    <a href="{{ url_for('home') }}">ホームへ戻る</a>
+    
+    <h1>緑から黄に変わってからクリックするまでの時間を計測します。</h1>
     <div id="circle"></div> <!-- 円の要素 -->
 
     <script>
@@ -63,17 +77,25 @@
                 endTime = new Date().getTime();
                 var reactionTime = endTime - startTime; // リアクションタイムを計算
                 reactionTimes.push(reactionTime); // リアクションタイムを保存
-                alert('Your reaction time: ' + reactionTime + ' milliseconds'); // リアクションタイムを表示
-
+                alert('反射時間: ' + reactionTime + ' milliseconds'); // リアクションタイムを表示
                 if (reactionTimes.length < 5) { // 5回未満の場合
                     circle.style.backgroundColor = colors[0]; // 再び緑に変更
                 } else { // 5回以上の場合
                     var sum = reactionTimes.reduce((a, b) => a + b, 0); // リアクションタイムの合計を計算
                     var averageReactionTime = sum / reactionTimes.length; // 平均リアクションタイムを計算
+                    var evaluation = '';
 
-                    alert('Average reaction time: ' + averageReactionTime.toFixed(2) + ' milliseconds'); // 平均リアクションタイムを表示
+                    if (averageReactionTime < 250 && reactionTimes.length === 5) {
+                        evaluation = '運転に全く問題ありません。';
+                    } else if (averageReactionTime >= 250 && averageReactionTime < 350 && reactionTimes.length <= 6) {
+                        evaluation = '気を引き締めて運転しましょう。';
+                    } else {
+                        evaluation = '運転は控えた方が良いかもしれません。';
+                    }
 
-                    if (confirm('Do you want to retry?')) { // リトライの確認
+                    alert('平均反射時間: ' + averageReactionTime.toFixed(2) + ' milliseconds\n評価: ' + evaluation); 
+
+                    if (confirm('もう一度やりますか?')) { // リトライの確認
                         reactionTimes = []; // リアクションタイムをリセット
                         startTimer(); // タイマーを再起動
                     } else {
@@ -81,7 +103,7 @@
                     }
                 }
             } else { // 円が黄色ではない場合
-                alert('You clicked while the circle is green. Please click when the circle turns yellow.'); // エラーメッセージを表示
+                alert('黄色に変わった時にクリックしてください。'); // エラーメッセージを表示
             }
         };
 
