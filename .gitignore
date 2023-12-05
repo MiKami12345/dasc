@@ -2,7 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=flask,python
 
 /tempCodeRunnerFile.py
-
+/templates/image/tempCodeRunnerFile.py
 ### Flask ###
 instance/*
 !instance/.gitignore
