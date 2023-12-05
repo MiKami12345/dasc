@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>結果</h1>
+    <p>{{ result_message }}</p>
+
+    <div class="result-details">
+        {% for detail in result_details %}
+            <div class="question-detail mt-3">
+                <p><strong>問題:</strong> {{ detail['question'] }}</p>
+                <p><strong>正解:</strong> {{ detail['correct_answer'] }}</p>
+                <p><strong>回答:</strong> {{ detail['user_answer'] }}</p>
+                <p><strong>解説:</strong> {{ detail['explanation'] }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+    <a href="{{ url_for('questionsIndex') }}">もう一度試す</a>
+{% endblock %}

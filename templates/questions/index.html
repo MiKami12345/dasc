@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>運転免許試験</h1>
+        <br>
+        <form method="post" action="/questions">
+            <label for="question_count">問題数を選択してください（5か10）:</label>
+            <select name="question_count" id="question_count">
+                <option value="5">5</option>
+                <!-- <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option> -->
+            </select>
+            <button type="submit">開始</button>
+        </form>
+</div>
+{% endblock %}

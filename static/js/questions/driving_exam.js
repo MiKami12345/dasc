@@ -4,7 +4,7 @@ function submitExam() {
 
     $.ajax({
         type: "POST",
-        url: "/questions/check_exam",
+        url: "/questions",
         data: formData,
         contentType: false,
         processData: false,
@@ -12,4 +12,7 @@ function submitExam() {
             $('#result').html(response);
         }
     });
+    console.log("Submit button clicked!");
+    // フォームの実際のsubmitを発生させる
+    form.submit();
 }
