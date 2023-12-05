@@ -38,6 +38,10 @@ correct_answers_list = [0] * (num_tests_first_set + num_tests_second_set)
 def home():
     return render_template('home.html')
 
+@app.route('/mypage')
+def mypage():
+    return render_template('home.html')
+
 # 問題を開始するページ
 @app.route('/color/index')
 def index():
