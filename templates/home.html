@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホーム</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
     <h1>ホーム</h1>
     <a href="{{ url_for('index') }}">色覚検査</a>
     <a href="{{ url_for('driving_exam') }}">知識問題</a>
     <a href="{{ url_for('imageAnalysis') }}">動画分析</a>
     <a href="{{ url_for('reflexesIndex') }}">反射神経</a>
-</body>
-</html>
+{% endblock %}
