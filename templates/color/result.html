@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>色覚検査結果</title>
+</head>
+<body>
+    <h1>結果</h1>
+    <p>正解数：{{ correct_answers }} / {{ num_tests }}</p>
+    <p>1:{{ result_answers }}
+    <a href="{{ url_for('index') }}">もう一度試す</a>
+    <a href="{{ url_for('home') }}">ホームへ戻る</a>
+</body>
+</html>

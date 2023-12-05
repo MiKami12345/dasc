@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>色覚検査</title>
+</head>
+<body>
+    <h1>色覚検査</h1>
+    
+    {% if question %}
+        <form action="/color/check_answer" method="post">
+            <p>問題：次の色は何色でしょうか？</p>
+            <img src="{{ url_for('static', filename=question['question'] + '.png') }}" alt="{{ question['question'] }}">
+            {% for option in question['options'] %}
+                <input type="radio" name="user_answer" value="{{ option }}" required> {{ option }}
+            {% endfor %}
+            <input type="submit" value="次へ">
+        </form>
+    {% else %}
+        <p>問題を開始するには以下のボタンをクリックしてください。</p>
+        <a href="{{ url_for('index') }}">問題を開始する</a>
+    {% endif %}
+</body>
+</html>
