@@ -3,8 +3,10 @@ import csv
 from templates.image.mmdetection.video_analysis import analysisMain
 import random
 import os
+# from fastapi import FastAPI
 
 app = Flask(__name__)
+# app = FastAPI()
 
 # ホームページ
 @app.route('/')
