@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="container mt-5">
     <h1>結果</h1>
     <p class="result-heading">正解数：{{ correct_answers }} / {{ num_tests }}</p>
 
@@ -23,4 +24,5 @@
     {% endfor %}
 
     <a href="{{ url_for('index') }}" class="button">もう一回</a>
+</div>
 {% endblock %}
