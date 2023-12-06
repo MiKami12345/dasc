@@ -14,7 +14,10 @@
     
     {% if upload_message == 1 %}
         <p>動画がアップロードされました！</p>
-        
+        <form action="/image/analysis" method="get">
+            <label for="analysis"></label>
+            <input type="submit" value="分析する">
+        </form>
     {% elif upload_message == 2 %}
         <p>動画が選択されていません。</p>
     {% else %}

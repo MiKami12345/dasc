@@ -132,14 +132,15 @@ def result():
 ## 動画分析
 @app.route('/image')
 def imageIndex():
-    return render_template('image/index.html', upload_message = 0)
+    message = 0
+    return render_template('image/index.html', upload_message = message)
 
 @app.route('/upload', methods=['POST'])
 def upload():
+    message = 0
     if 'video' in request.files:
         video = request.files['video']
         if video.filename != '':
-
             # video.save(os.path.join('uploads', video.filename))
             video.save(os.path.join('uploads', 'video.mp4'))
             return render_template('image/index.html', upload_message = 1)
@@ -147,9 +148,8 @@ def upload():
 
 @app.route('/image/analysis')
 def imageAnalysis():
-    # TODO
-    analysisMain(1)
-    return 200
+    analysis_result = analysisMain('./uploads/video.mp4')
+    return render_template('image/index.html', upload_message = 3, result = analysis_result)
 
 
 ## 知識問題
