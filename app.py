@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, send_file
 import csv
-from templates.image.video_analysis import analysisMain
+from templates.image.mmdetection.video_analysis import analysisMain
 import random
+import os
 
 app = Flask(__name__)
 
@@ -131,7 +132,18 @@ def result():
 ## 動画分析
 @app.route('/image')
 def imageIndex():
-    return render_template('image/index.html')
+    return render_template('image/index.html', upload_message = 0)
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    if 'video' in request.files:
+        video = request.files['video']
+        if video.filename != '':
+
+            # video.save(os.path.join('uploads', video.filename))
+            video.save(os.path.join('uploads', 'video.mp4'))
+            return render_template('image/index.html', upload_message = 1)
+    return render_template('image/index.html', upload_message = 2)
 
 @app.route('/image/analysis')
 def imageAnalysis():

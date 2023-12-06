@@ -3,6 +3,9 @@
 
 /tempCodeRunnerFile.py
 /templates/image/tempCodeRunnerFile.py
+/templates/image/mmdetection/tempCodeRunnerFile.py
+uploads/video.mp4
+
 ### Flask ###
 instance/*
 !instance/.gitignore
