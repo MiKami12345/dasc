@@ -97,7 +97,8 @@
                         reactionTimes = []; // リアクションタイムをリセット
                         startTimer(); // タイマーを再起動
                     } else {
-                        circle.style.display = 'none'; // 円を非表示にする
+                        window.location.href = "{{ url_for('home') }}";
+                        // circle.style.display = 'none'; // 円を非表示にする
                     }
                 }
             } else { // 円が黄色ではない場合
