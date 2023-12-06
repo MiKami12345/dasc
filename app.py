@@ -127,7 +127,7 @@ def result():
     # 問題をシャッフル
     shuffle_questions()
     
-    return render_template('color/result.html', correct_answers=correct_answers, num_tests=(num_tests_first_set + num_tests_second_set))
+    return render_template('color/result.html', correct_answers=correct_answers, num_tests=(num_tests_first_set + num_tests_second_set), results = results)
 
 ## 動画分析
 @app.route('/image')
