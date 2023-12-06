@@ -46,13 +46,23 @@ second_set_color_tests = [
     {'question': 'ピンク', 'options': ['赤', '青', '黄'], 'answer': '赤', 'display_answer': 'ピンク'},
 ]
 
+# セットごとに問題をシャッフルする関数
+def shuffle_questions():
+    # ランダムな順番で問題をシャッフル
+    random.shuffle(first_set_color_tests)
+    random.shuffle(second_set_color_tests)
+
+# シャッフル関数を初回実行
+shuffle_questions()
+
 # 現在の問題インデックス
 current_question_index = 0
 
 # 正解数を格納するリスト
 correct_answers_list = [0] * (num_tests_first_set + num_tests_second_set)
 
-
+# ユーザーの回答を格納するリスト
+user_answers_list = []
 
 # 問題を開始するページ
 @app.route('/color/index')
@@ -79,7 +89,9 @@ def check_answer():
         # 表示は赤、青、黄だが、内部的には紫、青、オレンジとして処理
         if user_answer == current_question['answer']:
             correct_answers_list[current_question_index] = 1
-            
+
+        # ユーザーの回答をリストに追加
+        user_answers_list.append(user_answer)   
 
         current_question_index += 1
 
@@ -98,7 +110,22 @@ def check_answer():
 def result():
     global correct_answers_list
     correct_answers = sum(correct_answers_list)
-    # current_question_index = 0  # リセットしない
+    
+    # 各問題に対する正解/不正解と正解の色を取得
+    results = []
+    for i in range(num_tests_first_set + num_tests_second_set):
+        current_question = first_set_color_tests[i] if i < num_tests_first_set else second_set_color_tests[i - num_tests_first_set]
+        result = {
+            'question': current_question['question'],
+            'correct': correct_answers_list[i] == 1,
+            'correct_answer': current_question['answer'],
+            'user_answer': user_answers_list[i],
+        }
+        results.append(result)
+
+    # 問題をシャッフル
+    shuffle_questions()
+    
     return render_template('color/result.html', correct_answers=correct_answers, num_tests=(num_tests_first_set + num_tests_second_set))
 
 ## 動画分析

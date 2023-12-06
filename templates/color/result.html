@@ -1,16 +1,26 @@
 {% extends "base.html" %}
 
 {% block css %}
+<link rel="stylesheet" href="../../static/css/color.css">
 {% endblock %}
 
 {% block content %}
     <h1>結果</h1>
-    <p>正解数：{{ correct_answers }} / {{ num_tests }}</p>
-    <p>1:{{ result_answers }}</p>
-    <p>2:{{ result_answers }}</p>
-    <p>3:{{ result_answers }}</p>
-    <p>4:{{ result_answers }}</p>
-    <p>5:{{ result_answers }}</p>
-    <p>6:{{ result_answers }}</p>
-    <a href="{{ url_for('index') }}">もう一度試す</a>
+    <p class="result-heading">正解数：{{ correct_answers }} / {{ num_tests }}</p>
+
+    {% for result in results %}
+        <div>
+            <p>問題{{ loop.index }}</p>
+            {% if result['correct'] %}
+                <p>正解です</p>
+                <p>あなたの回答: {{ result['correct_answer']}}</p>
+            {% else %}
+                <p>不正解です。正解は {{ result['correct_answer'] }} です。</p>
+                p>あなたの回答: {{ result['user_answer'] }}</p>
+            {% endif %}
+            <hr>
+        </div>
+    {% endfor %}
+
+    <a href="{{ url_for('index') }}" class="button">もう一回</a>
 {% endblock %}

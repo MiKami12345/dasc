@@ -10,7 +10,7 @@
     
     {% if question %}
         <form action="/color/check_answer" method="post">
-            <p>問題：次の色は何色でしょうか？</p>
+            <p>問題：次の色は何色でしょうか？該当する色がない場合は一番近いと思う色を選んでください</p>
             <img class="color-image" src="{{ url_for('static', filename=question['question'] + '.png') }}" alt="{{ question['question'] }}">
             {% for option in question['options'] %}
                 <input type="radio" name="user_answer" value="{{ option }}" required> {{ option }}
