@@ -4,27 +4,47 @@
 {% endblock %}
 
 {% block content %}
-<h1>動画アップロード</h1>
+<!-- <h1>動画アップロード</h1>
     <form action="/upload" method="post" enctype="multipart/form-data">
         <label for="video">動画を選択:</label>
         <input type="file" name="video" accept="video/*" required>
         <br>
         <input type="submit" value="アップロード">
-    </form>
+    </form> -->
     
     {% if upload_message == 1 %}
+        <h1>動画アップロード</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="video">動画を選択:</label>
+            <input type="file" name="video" accept="video/*" required>
+            <br>
+            <input type="submit" value="アップロード">
+        </form>
         <p>動画がアップロードされました！</p>
         <form action="/image/analysis" method="get">
             <label for="analysis"></label>
             <input type="submit" value="分析する">
         </form>
     {% elif upload_message == 2 %}
+        <h1>動画アップロード</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="video">動画を選択:</label>
+            <input type="file" name="video" accept="video/*" required>
+            <br>
+            <input type="submit" value="アップロード">
+        </form>
         <p>動画が選択されていません。</p>
     {% elif upload_message == 3 %}
         <h1>検査結果</h1>
         <p>{{ result }}</p>
     {% else %}
-        <br>
+        <h1>動画アップロード</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="video">動画を選択:</label>
+            <input type="file" name="video" accept="video/*" required>
+            <br>
+            <input type="submit" value="アップロード">
+        </form>
     {% endif %}
 
 {% endblock %}
