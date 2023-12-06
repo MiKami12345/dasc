@@ -9,7 +9,7 @@
     font-size: 16px;
     text-align: center;
     text-decoration: none;
-    background-color: #4CAF50;
+    background-color: #50ffb0;
     color: white;
     border: none;
     border-radius: 4px;
@@ -18,11 +18,11 @@
 }
 
 .button:hover {
-    background-color: #45a049;
+    background-color: #50ffb0;
 }
 
 .result-heading {
     font-size: 24px;
     font-weight: bold;
-    color: #4CAF50; /* 正答数の色を変更 */
+    color: #50ffb0; /* 正答数の色を変更 */
 }

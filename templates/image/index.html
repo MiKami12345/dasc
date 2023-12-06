@@ -20,6 +20,9 @@
         </form>
     {% elif upload_message == 2 %}
         <p>動画が選択されていません。</p>
+    {% elif upload_message == 3 %}
+        <h1>検査結果</h1>
+        <p>{{ result }}</p>
     {% else %}
         <br>
     {% endif %}
