@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, send_file
 import csv
-from templates.image.mmdetection.video_analysis import analysisMain
+# from templates.image.mmdetection.video_analysis import analysisMain
 import random
 import os
 # from fastapi import FastAPI
