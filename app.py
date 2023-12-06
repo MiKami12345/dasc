@@ -150,8 +150,8 @@ def upload():
 
 @app.route('/image/analysis')
 def imageAnalysis():
-    analysis_result = analysisMain('./uploads/video.mp4')
-    return render_template('image/index.html', upload_message = 3, result = analysis_result)
+    score, analysis_result = analysisMain('./uploads/video.mp4')
+    return render_template('image/index.html', upload_message = 3, result = analysis_result, score = score)
 
 
 ## 知識問題
