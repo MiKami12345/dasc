@@ -227,6 +227,16 @@ def check_exam(user_answers, questions, question_count):
 def reflexesIndex():
     return render_template('reflexes/index.html')
 
+## エラーページの追加
+
+@app.errorhandler(403)
+def error_403(error):
+    return render_template("error_pages/403.html"), 403
+
+@app.errorhandler(404)
+def error_404(error):
+    return render_template("error_pages/404.html"), 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)
